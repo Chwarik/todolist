@@ -77,14 +77,26 @@ body {
 		border-color: #C2C2C2;
 	}
 
-	.btn {
+	.btn__form {
 		width: 170px;
 		height: 32px;
 	}
 }
 
 // Active task and done
-.active,
+.active {
+	display: flex;
+	margin-top: 40px;
+	border: 2px;
+
+	h3 {
+		position: relative;
+		margin: 0;
+		margin-bottom: 15px;
+		font-size: 1.25em;
+	}
+}
+
 .done {
 	display: flex;
 	margin-top: 40px;
@@ -95,6 +107,7 @@ body {
 		margin-bottom: 15px;
 		font-size: 1.25em;
 	}
+
 }
 
 .task__list {
@@ -104,5 +117,29 @@ body {
 		padding: 5px;
 		font-size: 0.9em;
 		user-select: none;
+		background-color: burlywood;
+
+		&__delete {
+			.btn{
+				padding: 0;
+				border: none;
+				background: 0;
+				transition: all .2s ease-in-out;
+
+				&:hover {
+					transform: scale(1.3);
+				}
+			}
+		}
+	}
+
+	.task__done {
+		display: flex;
+		justify-content: space-between;
+		padding: 5px;
+		font-size: 0.9em;
+		user-select: none;
+		color: #757575;
+		background-color: #C2C2C2;
 	}
 }

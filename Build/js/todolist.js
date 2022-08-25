@@ -1,2 +1,2 @@
-"use strict";
+"use strict";!function(){var e=document.querySelector(".btn__form"),t=document.querySelectorAll(".btn");document.querySelectorAll("check");e.addEventListener("click",(function(){var e=document.querySelector(".input").value;console.log(e)})),t.forEach((function(e){e.addEventListener("click",(function(){e.parentNode.parentElement.remove()}))}))}();
 //# sourceMappingURL=todolist.js.map
