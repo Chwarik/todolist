@@ -75,39 +75,54 @@ body {
 				margin-top: 50px;
 }
 .form .input {
-				width: 370px;
+				-webkit-box-flex: 1;
+				    -ms-flex-positive: 1;
+				        flex-grow: 1;
+				margin-right: 20px;
 				height: 32px;
 				list-style: none;
-				border-width: 1px;
-				border-radius: 7px;
-				border-color: #C2C2C2;
+				background: #FFFFFF;
+				border: 1px solid #C2C2C2;
+				border-radius: 4px;
 }
 .form .btn__form {
+				padding: 10px 20px;
 				width: 170px;
 				height: 32px;
+				cursor: pointer;
+				border: 0;
+				color: #eee;
+				background: #5E47D2;
+				border-radius: 4px;
+}
+.form .btn__form:hover {
+				background: #694DF9;
+}
+.form .btn__form:focus {
+				background: #5E47D2;
+				-webkit-box-shadow: 0 0 0 2px #E2DCFF;
+				        box-shadow: 0 0 0 2px #E2DCFF;
+}
+.form .btn__form:disabled {
+				background: #F5F5F5;
+				color: #C2C2C2;
 }
 
-.active {
-				display: -webkit-box;
-				display: -ms-flexbox;
-				display: flex;
+.sectionActive {
 				margin-top: 40px;
 				border: 2px;
 }
-.active h3 {
+.sectionActive h3 {
 				position: relative;
 				margin: 0;
 				margin-bottom: 15px;
 				font-size: 1.25em;
 }
 
-.done {
-				display: -webkit-box;
-				display: -ms-flexbox;
-				display: flex;
+.sectionDone {
 				margin-top: 40px;
 }
-.done h3 {
+.sectionDone h3 {
 				position: relative;
 				margin: 0;
 				margin-bottom: 15px;
@@ -118,10 +133,13 @@ body {
 				display: -webkit-box;
 				display: -ms-flexbox;
 				display: flex;
+				position: relative;
 				-webkit-box-pack: justify;
 				    -ms-flex-pack: justify;
 				        justify-content: space-between;
-				padding: 5px;
+				-webkit-box-align: center;
+				    -ms-flex-align: center;
+				        align-items: center;
 				font-size: 0.9em;
 				-webkit-user-select: none;
 				   -moz-user-select: none;
@@ -129,8 +147,45 @@ body {
 				        user-select: none;
 				background-color: burlywood;
 }
+.task__list .task + .task {
+				margin-top: 5px;
+}
+.task__list .task.done {
+				color: #757575;
+				background-color: #C2C2C2;
+}
+.task__list .task__inner {
+				display: -webkit-box;
+				display: -ms-flexbox;
+				display: flex;
+				-webkit-box-align: center;
+				    -ms-flex-align: center;
+				        align-items: center;
+				padding: 10px;
+				cursor: pointer;
+}
+.task__list .task input {
+				position: absolute;
+				opacity: 0;
+				cursor: pointer;
+				height: 0;
+				width: 0;
+}
+.task__list .task input + span {
+				display: block;
+				margin-right: 10px;
+				height: 25px;
+				width: 25px;
+				background-color: #eee;
+}
+.task__list .task input:hover + span {
+				background-color: #ccc;
+}
+.task__list .task input:checked + span {
+				background-color: #2196F3;
+}
 .task__list .task__delete .btn {
-				padding: 0;
+				padding: 10px;
 				border: none;
 				background: 0;
 				-webkit-transition: all 0.2s ease-in-out;
@@ -139,21 +194,5 @@ body {
 .task__list .task__delete .btn:hover {
 				-webkit-transform: scale(1.3);
 				        transform: scale(1.3);
-}
-.task__list .task__done {
-				display: -webkit-box;
-				display: -ms-flexbox;
-				display: flex;
-				-webkit-box-pack: justify;
-				    -ms-flex-pack: justify;
-				        justify-content: space-between;
-				padding: 5px;
-				font-size: 0.9em;
-				-webkit-user-select: none;
-				   -moz-user-select: none;
-				    -ms-user-select: none;
-				        user-select: none;
-				color: #757575;
-				background-color: #C2C2C2;
 }
 /*# sourceMappingURL=main.css.map */

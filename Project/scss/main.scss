@@ -69,23 +69,43 @@ body {
 
 
 	.input {
-		width: 370px;
+		flex-grow: 1;
+		margin-right: 20px;
 		height: 32px;
 		list-style: none;
-		border-width: 1px;
-		border-radius: 7px;
-		border-color: #C2C2C2;
+		background: #FFFFFF;
+		border: 1px solid #C2C2C2;
+		border-radius: 4px;
 	}
 
 	.btn__form {
+		padding: 10px 20px;
 		width: 170px;
 		height: 32px;
+		cursor: pointer;
+		border: 0;
+		color: #eee;
+		background: #5E47D2;
+		border-radius: 4px;
+
+		&:hover {
+			background: #694DF9;
+		}
+
+		&:focus {
+			background: #5E47D2;
+			box-shadow: 0 0 0 2px #E2DCFF;
+		}
+
+		&:disabled {
+			background: #F5F5F5;
+			color: #C2C2C2;
+		}
 	}
 }
 
 // Active task and done
-.active {
-	display: flex;
+.sectionActive {
 	margin-top: 40px;
 	border: 2px;
 
@@ -97,8 +117,7 @@ body {
 	}
 }
 
-.done {
-	display: flex;
+.sectionDone {
 	margin-top: 40px;
 
 	h3 {
@@ -113,15 +132,56 @@ body {
 .task__list {
 	.task {
 		display: flex;
+		position: relative;
 		justify-content: space-between;
-		padding: 5px;
+		align-items: center;
 		font-size: 0.9em;
 		user-select: none;
 		background-color: burlywood;
 
+		+ .task {
+			margin-top: 5px;
+		}
+
+		&.done {
+			color: #757575;
+			background-color: #C2C2C2;
+		}
+
+		&__inner {
+			display: flex;
+			align-items: center;
+			padding: 10px;
+			cursor: pointer;
+		}
+
+		input {
+			position: absolute;
+			opacity: 0;
+			cursor: pointer;
+			height: 0;
+			width: 0;
+
+			+span {
+				display: block;
+				margin-right: 10px;
+				height: 25px;
+				width: 25px;
+				background-color: #eee;
+			}
+
+			&:hover+span {
+				background-color: #ccc;
+			}
+
+			&:checked+span {
+				background-color: #2196F3;
+			}
+		}
+
 		&__delete {
-			.btn{
-				padding: 0;
+			.btn {
+				padding: 10px;
 				border: none;
 				background: 0;
 				transition: all .2s ease-in-out;
@@ -131,15 +191,5 @@ body {
 				}
 			}
 		}
-	}
-
-	.task__done {
-		display: flex;
-		justify-content: space-between;
-		padding: 5px;
-		font-size: 0.9em;
-		user-select: none;
-		color: #757575;
-		background-color: #C2C2C2;
 	}
 }
