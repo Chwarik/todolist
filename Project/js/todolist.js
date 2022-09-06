@@ -1,13 +1,14 @@
 (function () {
 	let btnAdd = document.querySelector('.btn__form');
 	let btnRemove = document.querySelectorAll('.btn');
-	let inp = document.querySelectorAll('check');
-	let list = document.querySelector('.task');
+	let checkbox = document.querySelectorAll('check');
+	let list = document.querySelector('.task__list');
+	let listDone = document.querySelector('.task__listDone');
 
-	let input;
+	let input = document.querySelector('.input');
+	let inputValue;
 
 	let activeList = [
-
 		{
 			id: '1',
 			label: 'ggg'
@@ -51,34 +52,102 @@
 
 	// нужно найти родителя кнопки удаления и удалить из Html
 	// и Удалить заачу из массива
-	btnAdd.addEventListener('click', () => {
-		input = document.querySelector('.input').value;
-		// console.log(input);
 
-		let valInp = input;
-		activeList.push(valInp);
-		console.log(activeList);
-		inp.value = '';
+	window.onload = () => {
+		activeList.forEach((element) => {
 
-		// list.innerHTML = JSON.stringify(activeList);
+			let newTask = `
+				<div class="task">
+					<label class="task__inner">
+						<input class="check" type="checkbox" name="" /><span></span><span class="text">${element.label}</span>
+					</label>
+					<div class="task__delete">
+						<button class="btn"><img src="img/delete.svg" alt="" /></button>
+					</div>
+				</div>
+			`;
 
-		let newTask = `
-			<label class="task__inner">
-				<input class="check" type="checkbox" name="" /><span></span><span class="text">${valInp}</span>
-			</label>
-			<div class="task__delete">
-				<button class="btn"><img src="img/delete.svg" alt="" /></button>
-			</div>
-		`;
+			list.innerHTML += newTask;
+		});
 
-		list.innerHTML = newTask;
+		doneList.forEach((element) => {
+
+			let newTask = `
+				<div class="task done">
+					<label class="task__inner">
+						<input class="check" type="checkbox" name="" checked /><span></span><span class="text">${element.label}</span>
+					</label>
+					<div class="task__delete">
+						<button class="btn"><img src="img/delete.svg" alt="" /></button>
+					</div>
+				</div>
+			`;
+
+			listDone.innerHTML += newTask;
+		});
+
+		btnRemove = document.querySelectorAll('.btn');
+		del(btnRemove);
+
+	};
+
+	input.addEventListener('change', () => {
+		inputValue = input.value;
 	});
 
-	btnRemove.forEach((btnRemove) => {
-		btnRemove.addEventListener('click', () => {
-			btnRemove.parentNode.parentElement.remove();
+	btnAdd.addEventListener('click', () => {
+
+		let index = activeList.length + 1 + '';
+		let task = { id: index, label: inputValue };
+		activeList.push(task);
+
+		list.innerHTML = '';
+		activeList.forEach((element) => {
+
+			let newTask = `
+				<div class="task">
+					<label class="task__inner">
+						<input class="check" type="checkbox" name="" /><span></span><span class="text">${element.label}</span>
+					</label>
+					<div class="task__delete">
+						<button class="btn"><img src="img/delete.svg" alt="" /></button>
+					</div>
+				</div>
+			`;
+
+
+			list.innerHTML += newTask;
 		});
-	})
+		input.value = '';
+
+		btnRemove = document.querySelectorAll('.btn');
+		del(btnRemove);
+	});
+
+	let del = (btn) => {
+		btn.forEach((btn) => {
+			btn.onclick = () => {
+				let label = btn.parentNode.previousElementSibling.children[2].textContent;
+				btn.parentNode.parentNode.remove();
+
+				let replaceArray = (array) => {
+					let index = array.findIndex(isElement);
+					array.splice(index, 1);
+					return array;
+
+					function isElement(element, e) {
+						return element.label == label;
+					}
+				}
+				// list.remove(task);
+
+				replaceArray(activeList);
+				replaceArray(doneList);
+
+
+			};
+		})
+	}
 
 
 }());
